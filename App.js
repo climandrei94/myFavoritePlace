@@ -14,7 +14,7 @@ export default class App extends Component {
     }
     return (
       <ScrollView>
-        <View style = {appStyling.container}>
+        <View style = {appStyling.container }>
           <Locations img = {pictures.transfagarasan.uri} name ={pictures.transfagarasan.name}/>
         </View>
       </ScrollView>
