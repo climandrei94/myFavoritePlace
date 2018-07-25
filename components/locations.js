@@ -14,7 +14,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-// import Swiper from 'react-native-swiper';
+import Swiper from 'react-native-swiper';
 
 export default class Locations extends Component{
     constructor(props){
@@ -101,7 +101,18 @@ export default class Locations extends Component{
           <View style={locationStyling.infoContainer}>
             <Text style={locationStyling.textTitle}>Locatia: {this.props.name}</Text>
             {/* <Swiper style = {locationStyling.swiper}  showsButtons={true}> */}
-            <ScrollView horizontal = {true} pagingEnabled={true} ref ={(scroller)=>{this.scroller = scroller}}>
+            <ScrollView 
+              horizontal = {true} 
+              pagingEnabled={true} 
+              ref ={(scroller)=>{this.scroller = scroller}}
+              // scrollEnabled={false}s
+              onMomentumScrollEnd={(event)=>{
+                this.setState({
+                  numberOfCurrentImage: Math.abs(Math.ceil(event.nativeEvent.contentOffset.x/Dimensions.get('window').width))
+                })
+              }}
+              // scrollEventThrottle={40}
+            >
                 <Image source = {require('../images/trans.jpg')} style={{height:300,width:width}}/>
                 <Image source = {require('../images/trans2.png')} style={{height:300,width:width}}/>
                 <Image source = {require('../images/trans3.jpg')} style={{height:300,width:width}}/>
