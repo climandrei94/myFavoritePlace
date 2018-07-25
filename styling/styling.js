@@ -20,7 +20,7 @@ export const locationStyling = StyleSheet.create({
     images:{
       flex: 1,
       width: 300,
-      height: 300,
+      height: 300
     },
     text:{
       flex:1,
@@ -66,6 +66,10 @@ export const locationStyling = StyleSheet.create({
       borderBottomWidth: 1,
       marginTop: 10,
       fontSize:15
+    },
+    swiper:{
+      height:300,
+      width:300
     }
   });
   
