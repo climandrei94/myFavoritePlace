@@ -60,29 +60,6 @@ export default class Locations extends Component{
       })
     }
 
-    // swipeToLeft = () =>{
-    //   if(this.state.numberOfCurrentImage>0){
-    //     let curentImage = this.state.numberOfCurrentImage-1
-    //     let scrollingTo = Dimensions.get('window').width*curentImage
-    //     this.setState({
-    //       numberOfCurrentImage:curentImage
-    //     })
-    //     this.scroller.scrollTo({x:scrollingTo,y:0})
-    //   }
-    // }
-
-    // swipeToRight = () =>{
-    //   if(this.state.numberOfCurrentImage<3)
-    //   {
-    //     let curentImage = this.state.numberOfCurrentImage+1
-    //     let scrollingTo = Dimensions.get('window').width*curentImage
-    //     this.setState({
-    //       numberOfCurrentImage:curentImage
-    //     })
-    //     this.scroller.scrollTo({x:scrollingTo,y:0})
-    //   }
-    // }
-
     handlePress = () =>{
       let curentComments = this.state.comment
       curentComments.push({key:this.state.nume,comment:this.state.text})
@@ -106,35 +83,6 @@ export default class Locations extends Component{
                 <Image source = {require('../images/trans3.jpg')} style={{height:300,width:width}}/>
                 <Image source = {require('../images/trans4.jpg')} style={{height:300,width:width}}/>
             </Swiper>
-            {/* <Swiper style = {locationStyling.swiper}  showsButtons={true}>
-            <ScrollView 
-              horizontal = {true} 
-              pagingEnabled={true} 
-              ref ={(scroller)=>{this.scroller = scroller}}
-              // scrollEnabled={false}s
-              onMomentumScrollEnd={(event)=>{
-                this.setState({
-                  numberOfCurrentImage: Math.abs(Math.ceil(event.nativeEvent.contentOffset.x/Dimensions.get('window').width))
-                })
-              }}
-              // scrollEventThrottle={40}
-            >
-                <Image source = {require('../images/trans.jpg')} style={{height:300,width:width}}/>
-                <Image source = {require('../images/trans2.png')} style={{height:300,width:width}}/>
-                <Image source = {require('../images/trans3.jpg')} style={{height:300,width:width}}/>
-                <Image source = {require('../images/trans4.jpg')} style={{height:300,width:width}}/>
-            </Swiper>
-            </ScrollView>
-            <View style={{flex:1,flexDirection:'row',marginTop:10,marginBottom:5}}>
-              <TouchableOpacity onPress={this.swipeToLeft} style={{marginRight:10,borderColor:'black',borderWidth:2,padding:5}}>
-                  <Text style={{fontSize:20}}>Swipe to Left</Text>
-                  <Image source = {require('../images/left.svg')} style={{height:0,width:0}}/>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={this.swipeToRight} style={{borderColor:'black',borderWidth:2,padding:5}}>
-                <Image source = {require('../images/right.svg')} style={{height:300,width:width}}/>
-                  <Text style={{fontSize:20}}>Swipe to Right</Text>
-              </TouchableOpacity>
-            </View> */}
             <Text style={locationStyling.text}>Spune-ne parerea ta despre aceasta locatie:</Text>
             <TextInput 
               style={locationStyling.textInput}

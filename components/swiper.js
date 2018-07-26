@@ -4,7 +4,8 @@ import {
     Dimensions, 
     View,
     TouchableOpacity,
-    Text
+    Text,
+    StyleSheet
 } from 'react-native'
 
 export default class HorizontalScroller extends React.Component {
@@ -19,31 +20,31 @@ export default class HorizontalScroller extends React.Component {
             page: Math.abs(Math.ceil(event.nativeEvent.contentOffset.x / Dimensions.get('window').width))
         })
 
-        swipeToLeft = () =>{
-            if(this.state.numberOfCurrentImage>0){
-              let curentImage = this.state.numberOfCurrentImage-1
-              let scrollingTo = Dimensions.get('window').width*curentImage
-              this.setState({
+    swipeToLeft = () =>{
+        if(this.state.numberOfCurrentImage>0){
+            let curentImage = this.state.numberOfCurrentImage-1
+            let scrollingTo = Dimensions.get('window').width*curentImage
+            this.setState({
                 numberOfCurrentImage:curentImage
-              })
-              this.scroller.scrollTo({x:scrollingTo,y:0})
-            }
-          }
-      
-        swipeToRight = () =>{
-            if(this.state.numberOfCurrentImage<3){
-              let curentImage = this.state.numberOfCurrentImage+1
-              let scrollingTo = Dimensions.get('window').width*curentImage
-              this.setState({
-                numberOfCurrentImage:curentImage
-              })
-              this.scroller.scrollTo({x:scrollingTo,y:0})
-            }
+            })
+            this.scroller.scrollTo({x:scrollingTo,y:0})
         }
+    }
+      
+    swipeToRight = () =>{
+        if(this.state.numberOfCurrentImage<3){
+            let curentImage = this.state.numberOfCurrentImage+1
+            let scrollingTo = Dimensions.get('window').width*curentImage
+            this.setState({
+                numberOfCurrentImage:curentImage
+            })
+            this.scroller.scrollTo({x:scrollingTo,y:0})
+        }
+    }
 
     render() {
         return (
-            <View style={{flex: 1}}>
+            <View style={style.swiperBlock}>
                 <ScrollView 
                     horizontal={true} 
                     showsHorizontalScrollIndicator={false}
@@ -58,22 +59,49 @@ export default class HorizontalScroller extends React.Component {
                 >
                     {this.props.children}
                 </ScrollView>
-                <View style={{
-                        flex:1,
-                        flexDirection:'row',
-                        marginTop:10,
-                        marginBottom:5,
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                }}>
-                    <TouchableOpacity onPress={this.swipeToLeft} style={{marginRight:10,borderColor:'black',borderWidth:2,padding:5}}>
-                        <Text style={{fontSize:20}}>Swipe to Left</Text>
+                <View style={style.swiperButtons}>
+                    <TouchableOpacity 
+                        onPress={this.swipeToLeft} 
+                        style={style.leftButton}
+                    >
+                        <Text style={style.buttonsText}>{'<'}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={this.swipeToRight} style={{borderColor:'black',borderWidth:2,padding:5}}>
-                        <Text style={{fontSize:20}}>Swipe to Right</Text>
+
+                    <TouchableOpacity 
+                        onPress={this.swipeToRight} 
+                        style={style.rightButton}
+                    >
+                        <Text style={style.buttonsText}>{'>'}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
         )
     }
-} 
+}
+
+const style = StyleSheet.create({
+    swiperBlock:{
+        flex: 1
+    },
+    swiperButtons:{
+        flex:1,
+        flexDirection:'row',
+        marginTop:-50,
+        marginBottom:5,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    leftButton:{
+        marginRight:10,
+        padding:5
+        
+    },
+    rightButton:{
+        padding:5
+    },
+    buttonsText:{
+        fontSize:40,
+        fontWeight:'bold',
+        color:'#8fff4f'    
+    }
+})
